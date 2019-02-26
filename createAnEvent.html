@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">     <!-- require for IE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">   <!-- ensure display and zoom properly, based on screen width -->
+
+    <meta name="author" content="define author of the page -- your name">
+    <meta name="description" content="This is the page for users to create an event.">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+    <title>Create an Event</title>     <!-- specify title in a browser tab -->
+
+    <!--<link rel="stylesheet" href="styles/main.css">-->
+
+
+  </head>
+
+  <body>
+    <div class="jumbotron">
+      <div class="form-group">
+        <div class="col-sm-2">
+          <input class="btn btn-primary" type="button" value="Back">
+        </div>
+      </div>
+      <h2 style="text-align:center">Create an Event</h2>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2"><b>Name of Event*</b></label>
+      <div class="col-sm-5">
+        <input type="text" name="eventName" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2"><b>Location*</b></label>
+      <div class="col-sm-5">
+        <input type="text" name="eventLocation" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2"><b>Date*</b></label>
+      <div class="col-sm-5">
+        <input type="text" name="eventDate" class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="MM/DD/YYYY">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2"><b>Time*</b></label>
+      <div class="col-sm-5">
+        <input type="text" name="eventTime" class="form-control" placeholder="HH:MM" pattern="\d{1,2}/\d{1,2}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2"><b>Description*</b></label>
+      <div class="col-sm-5">
+        <textarea class="form-control" rows="5" name="eventDescription"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div class="col-sm-2">
+        <input class="btn btn-primary" type="submit" value="Create Event">
+      </div>
+    </div>
+  </body>
+</html>
