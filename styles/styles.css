@@ -1,10 +1,3 @@
-.bg-company-blue {
-    background-color:#16529E;
-}
-.nav-logo-orange{
-    color: #FF8425; 
-}
-
 .jumbotron{
     /*source: https://www.pexels.com/photo/group-of-people-sitting-on-white-mat-on-grass-field-745045/ */
     background-image: url(../styles/happy_people_copy.jpg);
@@ -22,10 +15,3 @@
     background:white;
     color: black;
 }
-.buttonblack{
-    background-color:black;
-}
-.error {
-    color: red;
-    font-style: italic;
- }

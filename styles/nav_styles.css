@@ -1,0 +1,15 @@
+.bg-company-blue {
+    background-color:#16529E;
+}
+.nav-logo-orange{
+    color: #FF8425; 
+}
+.error {
+    color: red;
+    font-style: italic;
+ }
+ .jumbotron{
+    background: black;
+    color:white;
+    text-align: center;
+ }
