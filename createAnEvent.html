@@ -12,8 +12,38 @@
 
     <title>Create an Event</title>     <!-- specify title in a browser tab -->
 
-    <!--<link rel="stylesheet" href="styles/main.css">-->
+    <!--<link rel="stylesheet" href="styles/main.css"> need form? required field-->
+    <script>
+    function dateFormat() {
+      var x, text;
+      x = document.getElementById("date").value;
+      var re = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+      if (!re.test(x)) {
+        text = "Input should be in the form of MM/DD/YYYY";
+      }else{
+        text= " ";
+      }
+      document.getElementById("errorMessage1").innerHTML = text;
+    }
 
+    function requiredField(){
+      var x, text;
+      x=document.getElementById(eventName).value;
+      if (x==""){
+        text="This field is required";
+      }
+      document.getElementById("errorMessage2").innerHTML = text;
+    }
+  </script>
+
+  <style>
+  body {
+    width:1300px;
+    margin:0 auto;
+    text-align:left;
+    padding:15px;
+   }
+ </style>
 
   </head>
 
@@ -29,37 +59,39 @@
     <div class="form-group">
       <label class="col-sm-2"><b>Name of Event*</b></label>
       <div class="col-sm-5">
-        <input type="text" name="eventName" class="form-control">
+        <input type="text" name="eventName" class="form-control" required>
+        <p id="errorMessage2"></p>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2"><b>Location*</b></label>
       <div class="col-sm-5">
-        <input type="text" name="eventLocation" class="form-control">
+        <input type="text" name="eventLocation" class="form-control" required>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2"><b>Date*</b></label>
       <div class="col-sm-5">
-        <input type="text" name="eventDate" class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="MM/DD/YYYY">
+        <input type="text" name="eventDate" class="form-control" pattern="/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/" placeholder="MM/DD/YYYY" id="date" required>
+        <p id="errorMessage1" style="color:red"></p>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2"><b>Time*</b></label>
       <div class="col-sm-5">
-        <input type="text" name="eventTime" class="form-control" placeholder="HH:MM" pattern="\d{1,2}/\d{1,2}">
+        <input type="text" name="eventTime" class="form-control" placeholder="HH:MM" pattern="\d{1,2}/\d{1,2}" required>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-2"><b>Description*</b></label>
       <div class="col-sm-5">
-        <textarea class="form-control" rows="5" name="eventDescription"></textarea>
+        <textarea class="form-control" rows="5" name="eventDescription" required></textarea>
       </div>
     </div>
     <br>
     <div class="form-group">
       <div class="col-sm-2">
-        <input class="btn btn-primary" type="submit" value="Create Event">
+        <input class="btn btn-primary" type="submit" value="Create Event" onclick="dateFormat()" onclick="requiredField()">
       </div>
     </div>
   </body>
