@@ -8,8 +8,57 @@
     color: red;
     font-style: italic;
  }
- .jumbotron{
-    background: black;
-    color:white;
+.primary-footer {
+    color: #16529E;
+    font-size: 14px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+} 
+.primary-footer a {
+    text-align:right;
+    color: #ffffff;
+}
+
+.primary-footer a:hover {
+    color: rgb(199, 103, 30);
+}
+.nav-footer {
+    text-align: right;
+    width: 100%;
+}
+  
+.nav-footer li {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: top;
+}
+.copyright {
+    float: left;
+    color: #FF8425;
+}
+.container {
+    margin: 0 auto;
+    width: 100%;                
+    padding-left: 30px;
+    padding-right: 30px;
+}
+html, body{
+    margin: 0;
+    padding:0;
+    height:100%;
+}
+.content-row {
+    background: white;
+    padding: 20px 20px 20px 20px;
+}
+
+.grid {
+    margin: 0 auto;
+    width: 100%;                	
+    padding-left: 15px;
+    padding-right: 15px;
     text-align: center;
- }
+}
+.content-col {
+    display: inline-block;	  
+} 

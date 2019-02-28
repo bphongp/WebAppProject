@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" /> <!--first thing need to define bootstrap-->
-        <link rel="stylesheet" href="styles/styles.css" /> 
+        <link rel="stylesheet" href="styles/jumbotron_image.css" /> 
         <link rel="stylesheet" href="styles/nav_styles.css" /> 
 
         <meta charset="utf-8">
@@ -23,6 +23,25 @@
                 document.getElementById("Username").focus();                       
             }
         </script>
+        <style>
+        .jumbotron-image{
+            /*source: https://www.pexels.com/photo/group-of-people-sitting-on-white-mat-on-grass-field-745045/ */
+            background-image: url(../styles/happy_people_copy.jpg);
+            background-size:     cover; 
+            background-repeat:   no-repeat;  
+            background-position: absolute;             
+            color:white;
+            text-align:center;
+        }
+        .jumbotron_color{
+            color:rgb(255, 145, 61);
+            font-size:26;
+        }
+        .bodyjumbotron {
+            background:white;
+            color: black;
+        }
+        </style>
     </head>
     <body onload="setFocus();"> 
         <!--this is for the navbar the navbar for login/homepage is a little different-->
