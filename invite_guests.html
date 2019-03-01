@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/nav_styles.css" /> 
+
+    <title>UInvite</title>
+    <script type="text/javascript">
+        function setFocus(){
+            document.getElementById("addperson").focus();                       
+        }
+    </script>
+</head>
+
+<style>
+    /*align left is for the button to be left aligned on the jumbotron*/
+    .align-left{
+        float:left !important; 
+    }
+    /*this will center the text on the jumbo tron*/
+    .center {
+        text-align: center; 
+        margin-right:5%;
+    }  
+    /*this is to make the text on the jumbotron align with the back button*/
+    h2{
+        display: inline-block;
+        margin:0;
+        vertical-align: middle;
+    }
+    /*grid is used to have the container after the jumbotron*/
+    .grid{
+        margin: 0 auto;
+        width: 100%;               	
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align: center;
+    }
+    *{
+        box-sizing:border-box;
+    }
+    /*the entire page will be this color so the bottom footer looks full and
+    won't have white spaces on it when user scrolls*/
+    body {
+        background: #16529E;
+        color: white;  
+    }
+    /*this is to have the actual white container after the jumbotron*/
+    .container {
+        margin: 0 auto;
+        width: 100%;                
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    /*help splits the screen into two to have event on one side and the invite guests on the other*/
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+    }
+    /*change the color of the jumbotron*/
+    .jumbotron{
+        background: black;
+        color:white;
+        text-align: center;
+    }
+    /*pseudo style when use hovers over the jumbotron*/
+    .jumbotron:hover {
+        background-color: #16529E;
+    }
+    /* line*/
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+    .item {
+        grid-column: 1 / span 2;
+        grid-row: 1 / span 20;
+        background-color: orange;
+        justify-self: left;
+    }
+</style>
+<!--jumbotron hover is for pseudo-->
+<body onload="setFocus();">
+    <nav class="navbar navbar-expand-md bg-company-blue navbar-dark">
+        <a class="navbar-brand" href="#"><h3 class = "nav-logo-orange">UInvite</h3></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">   
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Me</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Profile</a>
+                    </div>
+             </li> 
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>              
+            <li class="nav-item"> 
+                <a class="nav-link" href="#">Events</a>
+            </li>
+
+            <li class="nav-item"> 
+                <a class="nav-link" href="#">Invitations</a>
+            </li>                           
+
+          </ul>
+        </div>  
+    </nav>
+    <div class="jumbotron">
+        <div class="form-group">
+            <input class="btn btn-primary align-left" type="button" value="Back">
+            <h2 class = "center">Invite Guests</h2>
+        </div>
+    </div>
+
+    <section class="content-row row">
+        <div class="grid">
+            <!--left of the event -->
+            <div class="column" style="background-color:#FF8425;">
+                <label>Event: </label>
+                <br>
+                <label>Event Location: </label>
+                <br>
+                <label>Event Date:</label>
+                <br>
+                <label>Event Time:</label>
+                <br>
+                <label>Event Description:</label>
+            </div>
+            <div class="column" style="color: black;">
+                <div class="form-group">                
+                    <label>Send Invitation To: </label>
+                    <input name="person" id="person">
+                    <input class="btn btn-primary" type="submit" value="Add" id="addperson" onClick="addPerson()">
+                    <br>
+                    <span class="error" id="person-note"></span>
+                </div>
+                <hr>
+                <div id ="invite">
+                    <table id ="inviteTable" class = "table">
+                        <thead>
+                            <th>Invitee</th>
+                            <th>(Remove)</th>
+                        </thead>
+
+
+                    </table>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </section>   
+    <script>
+        function addPerson(){
+            var invitee = document.getElementById("person").value;
+            var removeoption = "<input type=button value=' X ' onClick='delPerson()'>";
+            if (invitee===''){
+                document.getElementById("person").focus();
+                document.getElementById("person-note").innerHTML = "You did not enter anything";
+            }
+            else{
+                document.getElementById("person-note").innerHTML = "";
+                var rowdata =[invitee, removeoption];
+                document.getElementById("person").value = "";
+                var tableRef = document.getElementById("inviteTable");
+                var newRow = tableRef.insertRow(tableRef.rows.length); 
+                newRow.onmouseover = function() { 
+                    tableRef.clickedRowIndex = this.rowIndex;     
+                };    
+                var newCell = "";       
+                var i = 0;
+                // insert new cells (<td> elements) at the 1st, 2nd, 3rd, 4th position of the new <tr> element
+                // using insertCell(method) method        	      
+                while (i < 2)
+                {
+                    newCell = newRow.insertCell(i);
+                    newCell.innerHTML = rowdata[i];
+                    newCell.onmouseover = this.rowIndex;
+                    i++;
+                }
+            }
+
+        }
+    </script>
+    <footer class="primary-footer container">
+      <small class="copyright">&copy; Phongphouthai & </small>
+      <nav class="nav-footer">
+        <ul>
+          <li><a href="index.html" title="may or may not need, depending on design">Me</a></li>
+          <li><a href="software.html" title="software or tool you have involved or created">Events</a></li>
+          <li><a href="research.html" title="research you have involved">Invitations</a></li>
+          <li><a href="contact.html" title="either email or form">Contact Us</a></li>
+        </ul>
+      </nav>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
