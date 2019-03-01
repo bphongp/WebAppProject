@@ -49,6 +49,7 @@
     body {
         background: #16529E;
         color: white;
+        overflow-x: hidden;
     }
     /*this is to have the actual white container after the jumbotron*/
     .container {
@@ -60,6 +61,12 @@
     /*help splits the screen into two to have event on one side and the invite guests on the other*/
     .column {
         float: left;
+        width: 47%;
+        padding: 10px;
+    }
+    /*help splits the screen into two to have event on one side and the invite guests on the other*/
+    .column-right{
+        float: right;
         width: 50%;
         padding: 10px;
     }
@@ -80,11 +87,19 @@
         border: 0;
         border-top: 1px solid #ccc;
     }
+    /*this is the event box*/
     .item {
         grid-column: 1 / span 2;
         grid-row: 1 / span 20;
         background-color: orange;
         justify-self: left;
+    }
+    /*for a responsive table*/
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
     }
 </style>
 <!--jumbotron hover is for pseudo-->
@@ -128,8 +143,8 @@
     <section class="content-row row">
         <div class="grid">
             <!--left of the event -->
-            <div class="column" style="background-color:#FF8425;">
-                <label>Event: </label>
+            <div class="column" style="background-color:#FF8425; position:fixed;">
+                <label>Event:</label>
                 <br>
                 <label>Event Location: </label>
                 <br>
@@ -139,7 +154,7 @@
                 <br>
                 <label>Event Description:</label>
             </div>
-            <div class="column" style="color: black;">
+            <div class="column-right" style="color: black; overflow-x: auto;">
                 <div class="form-group">
                     <label>Send Invitation To: </label>
                     <input name="person" id="person">
@@ -191,7 +206,7 @@
                     i++;
                 }
             }
-
+            document.getElementById("person").focus();
         }
     </script>
     <footer class="primary-footer container">
