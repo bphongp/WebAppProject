@@ -135,7 +135,7 @@
     </nav>
     <div class="jumbotron">
         <div class="form-group">
-            <input class="btn btn-primary align-left" type="button" value="Back">
+            <input class="btn btn-primary align-left" type="button" value="Back" onclick="goBack()">
             <h2 class = "center">Invite Guests</h2>
         </div>
     </div>
@@ -143,7 +143,7 @@
     <section class="content-row row">
         <div class="grid">
             <!--left of the event -->
-            <div class="column" style="background-color:#FF8425; position:fixed;">
+            <div class="column" style="background-color:#FF8425; position:fixed; text-align: left;">
                 <label>Event:</label>
                 <br>
                 <label>Event Location: </label>
@@ -161,6 +161,7 @@
                     <input class="btn btn-primary" type="submit" value="Add" id="addperson" onClick="addPerson()">
                     <br>
                     <span class="error" id="person-note"></span>
+                    <span class="error" id="send-note"></span>
                 </div>
                 <hr>
                 <div id ="invite">
@@ -169,18 +170,22 @@
                             <th>Invitee</th>
                             <th>(Remove)</th>
                         </thead>
-
-
                     </table>
                 </div>
                 <hr>
+                <input class="btn btn-primary" type="submit" value="Send Invites" id="sendInvites" onClick="sendInvites()">
             </div>
         </div>
     </section>
     <script>
+        /*back buttons have functionality*/
+        function goBack() {
+            window.history.back();
+        }
+        /*script to add a person onto the table*/
         function addPerson(){
             var invitee = document.getElementById("person").value;
-            var removeoption = "<input type=button value=' X ' onClick='delPerson()'>";
+            var removeoption = "<input type=button value=' X ' onClick='deletePerson()'>";
             if (invitee===''){
                 document.getElementById("person").focus();
                 document.getElementById("person-note").innerHTML = "You did not enter anything";
@@ -207,6 +212,28 @@
                 }
             }
             document.getElementById("person").focus();
+            document.getElementById("send-note").innerHTML = "";
+        }
+        /*delete person*/
+        function deletePerson(){
+            // since deletion action is unrecoverable, add hesitation to minimize/avoid user error 
+            if (confirm("Press OK to delete. This action is unrecoverable.") == true)   
+                document.getElementById("inviteTable").deleteRow(document.getElementById("inviteTable").clickedRowIndex);
+            document.getElementById("person").focus();
+
+        }
+        /*check if the table is empty and does not have people*/
+        function sendInvites(){
+            var invitees = document.getElementById("inviteTable");
+            if (invitees.rows.length==1){
+                document.getElementById("send-note").innerHTML = "No one to send invitations to. Please add a person.";
+                document.getElementById("person-note").innerHTML = "";
+
+            }
+            else{
+                document.getElementById("send-note").innerHTML = "Invitations Sent";
+                document.getElementById("person-note").innerHTML = "";
+            }
         }
     </script>
     <footer class="primary-footer container">
