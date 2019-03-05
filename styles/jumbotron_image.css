@@ -1,3 +1,4 @@
+/*this will allow the login page to have to image of the perople in the backgroud*/
 .jumbotron{
     /*source: https://www.pexels.com/photo/group-of-people-sitting-on-white-mat-on-grass-field-745045/ */
     background-image: url(../styles/happy_people_copy.jpg);
@@ -7,10 +8,12 @@
     color:white;
     text-align:center;
 }
+/*will make the UInvite on the jumbotron orange*/
 .jumbotron_color{
     color:rgb(255, 145, 61);
     font-size:26;
 }
+/*will make the body have a text color that is black*/
 .bodyjumbotron {
     background:white;
     color: black;

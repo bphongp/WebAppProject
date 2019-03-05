@@ -23,32 +23,14 @@
                 document.getElementById("Username").focus();                       
             }
         </script>
-        <style>
-        .jumbotron-image{
-            /*source: https://www.pexels.com/photo/group-of-people-sitting-on-white-mat-on-grass-field-745045/ */
-            background-image: url(../styles/happy_people_copy.jpg);
-            background-size:     cover; 
-            background-repeat:   no-repeat;  
-            background-position: absolute;             
-            color:white;
-            text-align:center;
-        }
-        .jumbotron_color{
-            color:rgb(255, 145, 61);
-            font-size:26;
-        }
-        .bodyjumbotron {
-            background:white;
-            color: black;
-        }
-        </style>
+
     </head>
     <body onload="setFocus();"> 
         <!--this is for the navbar the navbar for login/homepage is a little different-->
         <nav class="navbar navbar-expand-md bg-company-blue navbar-dark">
             <a class="navbar-brand" href="#"><h3 class = "nav-logo-orange">UInvite</h3></a>
         </nav>
-
+        <!--the nice photo of the people and learn more thing-->
         <div class="jumbotron">
             <h1 class ="jumbotron_color">UInvite</h1>
             <h2 text-align: center> Easily Create Events and Send Invitations</h2>
@@ -56,6 +38,7 @@
                 <a class="btn btn-primary btn-lg" href=" #" role=" button"> Learn more</a>
             </p>
         </div>    
+        <!--This whole div is for the username and password for the user to enter-->
         <div class="form-group">
             <label class ="col-sm-2"><b>Username</b></label>
             <div class = "col-sm-5">
@@ -69,6 +52,7 @@
 
             </div>
             <br>
+            <!--this div is for the login, singup and forgot password-->
             <div class = "col-sm-5">
                 <input type = "submit" id = "Signup" class = "btn btn-secondary" value = Signup onclick= "signup()">
                 <input type ="submit" id ="Login" class = "btn btn-primary" value = "Login" onclick="login()">
@@ -81,6 +65,8 @@
             </div>
         </div>
         <script>
+            /* function login will check to see if the password is empty if it is it will tell the
+             user to enter something then try to login again. if login passes... for now just redirect*/
             function login(){
                 var un = document.getElementById("Username").value;
                 var pw = document.getElementById("password").value;
@@ -96,6 +82,7 @@
                     document.getElementById("redirectstosignup").innerHTML = "";                    
                 }
             }
+            /*signup will not really do anything yet because we are not sure how to redirect*/
             function signup(){
                 document.getElementById("redirectstologin").innerHTML = ""
                 document.getElementById("redirectstosignup").innerHTML = "Signup clicked--would redirect to signup page"
@@ -105,6 +92,8 @@
                 it ill ask the user to enter in a username to continue*/
             document.getElementById("password").addEventListener("focus", validateUsername);
 
+            /*this is the function to validate the username. if they did not enter anything
+            it will ask the user to enter a username*/
             function validateUsername(){
                 if (document.getElementById("Username").value === '')
                 {
@@ -114,17 +103,7 @@
                 else 
                     document.getElementById("username-note").innerHTML = ""; // if nothing is wrong, let's make sure no left-over message 
             }
-
-
-            function validatePassword(){
-                if (document.getElementById("password").value === '')
-                {
-                    document.getElementById("password").focus();
-                    document.getElementById("password-note").innerHTML = "Please enter your password.";
-                }
-                else 
-                    document.getElementById("password-note").innerHTML = ""; // if nothing is wrong, let's make sure no left-over message 
-            }            
+    
         </script>
     </body>
 </html>
