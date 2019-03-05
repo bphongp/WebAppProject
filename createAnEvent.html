@@ -16,26 +16,25 @@
     <!--This is an arrow function that checks the users' date input-->
     <script>
         dateFormat=() =>{
-            var x, text;
-            x = document.getElementById("date").value;
-            var re = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
-            if (!re.test(x)) {
-              text = "Input should be in the form of MM/DD/YYYY";
+            var date_value, text;
+            date_value = document.getElementById("date").value;
+            if (!date_value.match(/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/)) {
+              msg = "Input should be in the form of MM/DD/YYYY";
             }else{
-              text= " ";
+              msg= " ";
             }
-            document.getElementById("errorMessage1").innerHTML = text;
+            document.getElementById("errorMessage1").innerHTML = msg;
         }
 
         // This is an anonymous function that checks the users' time input
         timeFormat=function() {
-            var y = document.getElementById("time").value;
-            if (!y.match(/^[0-9]{2}:[0-9]{2}$/)) {
-                text = "Input should be in the form of HH:MM";
+            var time_value = document.getElementById("time").value;
+            if (!time_value.match(/^[0-9]{2}:[0-9]{2}$/)) {
+                msg = "Input should be in the form of HH:MM";
             } else {
-                text=" ";
+                msg=" ";
             }
-            document.getElementById("errorMessage2").innerHTML = text;
+            document.getElementById("errorMessage2").innerHTML = msg;
         }
 
 
@@ -154,7 +153,7 @@
                 <div class="form-group">
                     <label class="col-sm-2"><b>Date*</b></label>
                     <div class="col-sm-5">
-                        <input type="text" name="eventDate" class="form-control" pattern="/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/" placeholder="MM/DD/YYYY" id="date" required>
+                        <input type="text" name="eventDate" class="form-control" placeholder="MM/DD/YYYY" id="date" required>
                         <p id="errorMessage1" style="color:red"></p>
                     </div>
                 </div>
@@ -162,7 +161,7 @@
                 <div class="form-group">
                     <label class="col-sm-2"><b>Time*</b></label>
                     <div class="col-sm-5">
-                        <input type="text" name="eventTime" min="00:00" max="24:00" class="form-control" placeholder="HH:MM" pattern="/^[0-9]{2}:[0-9]{2}$/" id="time" required>
+                        <input type="text" name="eventTime" min="00:00" max="24:00" class="form-control" placeholder="HH:MM" id="time" required>
                         <p id="errorMessage2" style="color:red"></p>
                     </div>
                 </div>
