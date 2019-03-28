@@ -2,14 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge">  <!-- required to handle IE -->
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" /> <!--first thing need to define bootstrap-->
-        <link rel="stylesheet" href="styles/jumbotron_image.css" /> 
-        <link rel="stylesheet" href="styles/nav_styles.css" /> 
+        <link rel="stylesheet" href="styles/jumbotron_image.css" />
+        <link rel="stylesheet" href="styles/nav_styles.css" />
 
         <meta charset="utf-8">
         <!--the following lines are for the navbar...just going to copy and past fo rnow-->
@@ -20,12 +20,12 @@
 
         <script type="text/javascript">
             function setFocus(){
-                document.getElementById("Username").focus();                       
+                document.getElementById("Username").focus();
             }
         </script>
 
     </head>
-    <body onload="setFocus();"> 
+    <body onload="setFocus();">
         <!--this is for the navbar the navbar for login/homepage is a little different-->
         <nav class="navbar navbar-expand-md bg-company-blue navbar-dark">
             <a class="navbar-brand" href="#"><h3 class = "nav-logo-orange">UInvite</h3></a>
@@ -37,9 +37,10 @@
             <p>
                 <a class="btn btn-primary btn-lg" href=" #" role=" button"> Learn more</a>
             </p>
-        </div>    
+        </div>
         <!--This whole div is for the username and password for the user to enter-->
         <div class="form-group">
+          <form action="createAnEvent.html" method="post">
             <label class ="col-sm-2"><b>Username</b></label>
             <div class = "col-sm-5">
                 <input type ="text" name ="Username" id = "Username" class = "form-control">
@@ -48,15 +49,15 @@
             <label class ="col-sm-2"><b>Password</b></label>
             <div class = "col-sm-5">
                 <input type ="password" name ="password" id ="password" class = "form-control">
-                <span class="error" id="password-note"></span>
-
+                <span class="error" id="password-note"></span>    
+          </form>
             </div>
             <br>
             <!--this div is for the login, singup and forgot password-->
             <div class = "col-sm-5">
                 <input type = "submit" id = "Signup" class = "btn btn-secondary" value = Signup onclick= "signup()">
                 <input type ="submit" id ="Login" class = "btn btn-primary" value = "Login" onclick="login()">
-            </div>       
+            </div>
             <div class = "col-sm-5">
                 <a href= "#">Forgot Username or Password?</a>
                 <br>
@@ -77,9 +78,9 @@
 
                 }
                 else{
-                    document.getElementById("password-note").innerHTML = ""; 
+                    document.getElementById("password-note").innerHTML = "";
                     document.getElementById("redirectstologin").innerHTML = "if password field and such are successful will login(backend)"
-                    document.getElementById("redirectstosignup").innerHTML = "";                    
+                    document.getElementById("redirectstosignup").innerHTML = "";
                 }
             }
             /*signup will not really do anything yet because we are not sure how to redirect*/
@@ -100,10 +101,10 @@
                     document.getElementById("Username").focus();
                     document.getElementById("username-note").innerHTML = "Please enter your username.";
                 }
-                else 
-                    document.getElementById("username-note").innerHTML = ""; // if nothing is wrong, let's make sure no left-over message 
+                else
+                    document.getElementById("username-note").innerHTML = ""; // if nothing is wrong, let's make sure no left-over message
             }
-    
+
         </script>
     </body>
 </html>
