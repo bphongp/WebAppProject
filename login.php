@@ -1,31 +1,34 @@
-
-<?php include "navbar.html"; ?>
-
 <?php
-function reject($entry)
-{
-   echo 'Please log in first.';
-   exit();
-}
+   //readfile("login.html");
 
-if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['Username']) > 0)
-{
-   $user = trim($_POST['Username']);
-   if (!ctype_alnum($user))   // ctype_alnum() check if the values contain only alphanumeric data
-      reject('User Name');
+   if(isset($_POST['login'])){
 
-   if (isset($_POST['pwd']))
-   {
-      $pwd = trim($_POST['password']);
-      if (!ctype_alnum($pwd))
-         reject('Password');
-      else
-      {
-         setcookie('user', $user, time()+3600);
-         setcookie('pwd', md5($pwd), time()+3600);
-         header('Location: createAnEvent.html');
+      session_start();
+      include('conn.php');
+
+      $username=$_POST['username'];
+      $password=$_POST['password'];
+      $query=mysqli_query($conn,"select * from `user` where username='$username' && password='$password'");
+
+      if (mysqli_num_rows($query) == 0){
+         $_SESSION['message']="Please try again, username or password not correct";
+         header('location:index1.php');
+      }
+      else{
+         $row=mysqli_fetch_array($query);
+
+         if (isset($_POST['remember'])){
+            //set up cookie
+            setcookie("user", $row['username'], time() + (86400 * 30)); 
+            setcookie("pass", $row['password'], time() + (86400 * 30)); 
+         }
+
+         $_SESSION['id']=$row['userid'];
+         header('location: login_success.php');
       }
    }
-}
-
+   else{
+      header('location:index1.php');
+      $_SESSION['message']="Please Login!";
+   }
 ?>
