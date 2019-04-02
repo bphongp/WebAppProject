@@ -20,17 +20,17 @@ Need 3 of the following:
 [ ] one user-defined function  
   
 [ ] $_GET --sending and handling HTTP GET Requests  
-[ ] $_POST --sending and handling HTTP POST requests  
+[x] $_POST --sending and handling HTTP POST requests  
   
-[ ] Server-side input validation  
-  [ ] Validate form data
-  [ ] provide user-appropriate error messages  
-[ ] Implement form submission and handling  
-[ ] support multiple users....  
-	[ ] $_COOKIE --stores information on the client  
-	[ ] $_SESSION --stores information on the server  
-XML/DATABASE
-[ ] returning user must be able to access their existing data, records, or previous states. 
+[x] Server-side input validation  
+  [x] Validate form data
+  [x] provide user-appropriate error messages  
+[x] Implement form submission and handling  
+[x] support multiple users....  
+	[x] $_COOKIE --stores information on the client  
+	[x] $_SESSION --stores information on the server  
+XML/DATABASE  
+[x] returning user must be able to access their existing data, records, or previous states.  
 [ ] users must be able to retrieve and view data previously stored in XML and/or database and use them in some way to serve some purpose  
 [ ] users must be able to update data stored in XML and/or database  
 	
