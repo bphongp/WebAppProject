@@ -1,31 +1,49 @@
-
-<?php include "navbar.html"; ?>
-
 <?php
-function reject($entry)
-{
-   echo 'Please log in first.';
-   exit();
-}
+   //readfile("login.html");
 
-if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['Username']) > 0)
-{
-   $user = trim($_POST['Username']);
-   if (!ctype_alnum($user))   // ctype_alnum() check if the values contain only alphanumeric data
-      reject('User Name');
+   if(isset($_POST['login'])){
 
-   if (isset($_POST['pwd']))
-   {
-      $pwd = trim($_POST['password']);
-      if (!ctype_alnum($pwd))
-         reject('Password');
-      else
+      session_start();
+      include('conn.php');
+      require('conn.php');
+      $username=$_POST['username'];
+      $pw=$_POST['password'];
+      //$query=mysqli_query($conn,"select * from `user` where username='$username' && password='$pw'");
+      $query = "SELECT * FROM users WHERE username = :username";
+      $statement = $conn->prepare($query); 
+      $statement->bindValue(':username', $username);
+      $statement->execute();
+         // fetchAll() returns an array for all of the rows in the result set
+      $results = $statement->fetchAll();
+
+   // closes the cursor and frees the connection to the server so other SQL statements may be issued 
+      $statement->closecursor();
+      foreach ($results as $result)
       {
-         setcookie('user', $user, time()+3600);
-         setcookie('pwd', md5($pwd), time()+3600);
-         header('Location: createAnEvent.html');
+         $row =$result;
+      }
+   
+
+      if ($row ==0){//mysqli_num_rows($results) == 0){
+         $_SESSION['message']="Please try again, username or password not correct";
+         header('location:index.php');
+      }
+      else{
+         //$row=mysqli_fetch_array($query);
+         //$row =$query;
+         
+         if (isset($_POST['remember'])){
+            //set up cookie
+            setcookie("user", $row['username'], time() + (86400 * 30)); 
+            setcookie("pass", $row['pw'], time() + (86400 * 30)); 
+         }
+
+         $_SESSION['id']=$row['userid'];
+         header('location: login_success.php');
       }
    }
-}
-
+   else{
+      header('location:index.php');
+      $_SESSION['message']="Please Login!";
+   }
 ?>
