@@ -204,21 +204,22 @@
                         <input type="hidden" name="update" value="True">
                         <input class="btn btn-primary" type="submit" value="Update Event" id="updateEvent">
                 </form>
+
             </div>
             <!--table of the people they would like to invite-->
             <div class="column-right" style="color: black; overflow-x: auto;">
                 <div class="form-group">
                     <label>Send Invitation To: </label>
-                        <input name="person" id="person">
-                        <input class="btn btn-primary" type="submit" value="Add" id="addperson" name ="add" onClick="addPerson()">
-                        <br>
+                    <input name="person" id="person">
+                    <input class="btn btn-primary" type="submit" value="Add" id="addperson" onClick="addPerson()">
+                    <br>
                     <span class="error" id="person-note"></span>
                     <span class="error" id="send-note"></span>
                 </div>
+                <form method="POST" action="guests_added.php">
                     <hr>
                     <div id ="invite">
-                        <table id ="inviteTable" class = "table" name ="invite_table" style = "color:black;">
-                        <input type="hidden" name="eventid" value="<?php echo $eventid;?>">
+                        <table id ="inviteTable" class = "table" style = "color:black;">
                             <thead>
                                 <th>Invitee</th>
                                 <th>(Remove)</th>
