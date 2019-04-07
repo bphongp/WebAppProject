@@ -13,13 +13,13 @@ It also uses javascript and php.
 Assignment 4: PHP, database 
 Need 3 of the following:  
 [ ] arrays  
-[ ] expressions  
-[ ] control structures(selction or loop)  
-[ ] predefined/standard/built-in function(s)  
+[x] expressions  
+[x] control structures(selction or loop)  
+[x] predefined/standard/built-in function(s)  
   
-[ ] one user-defined function  
+[x] one user-defined function  
   
-[ ] $_GET --sending and handling HTTP GET Requests  
+[x] $_GET --sending and handling HTTP GET Requests  
 [x] $_POST --sending and handling HTTP POST requests  
   
 [x] Server-side input validation  
@@ -31,8 +31,8 @@ Need 3 of the following:
 	[x] $_SESSION --stores information on the server  
 XML/DATABASE  
 [x] returning user must be able to access their existing data, records, or previous states.  
-[ ] users must be able to retrieve and view data previously stored in XML and/or database and use them in some way to serve some purpose  
-[ ] users must be able to update data stored in XML and/or database  
+[x] users must be able to retrieve and view data previously stored in XML and/or database and use them in some way to serve some purpose  
+[x] users must be able to update data stored in XML and/or database  
 	
   
 ------------------------------------------------------------
