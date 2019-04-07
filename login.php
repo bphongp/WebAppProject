@@ -12,7 +12,7 @@
 
       if (mysqli_num_rows($query) == 0){
          $_SESSION['message']="Please try again, username or password not correct";
-         header('location:index1.php');
+         header('location:index.php');
       }
       else{
          $row=mysqli_fetch_array($query);
@@ -28,7 +28,7 @@
       }
    }
    else{
-      header('location:index1.php');
+      header('location:index.php');
       $_SESSION['message']="Please Login!";
    }
 ?>

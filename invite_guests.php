@@ -1,3 +1,37 @@
+<?php
+	session_start();
+	if (!isset($_SESSION['id']) ||(trim ($_SESSION['id']) == '')) {
+		header('index.php');
+		exit();
+	}
+    include('conn.php');
+    $event_id = $_GET['eventid'];
+    $query=mysqli_query($conn,"select * from `link` where userid='".$_SESSION['id']."' && eventid='".$event_id."'");
+    if (mysqli_num_rows($query) > 0) {
+		// output data of each row
+		while($row = mysqli_fetch_assoc($query)) {
+            $userid = $row["userid"];
+            $eventid = $row["eventid"];
+		}
+    }
+    $result = mysqli_query($conn, "select * from `events` where eventid='$eventid'");
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while($eventrow = mysqli_fetch_assoc($result)) {
+            $eventName = $eventrow["eventName"];
+            $eventLocation = $eventrow["eventLocation"];
+            $eventDate= $eventrow["eventDate"];
+            $eventTime = $eventrow["eventTime"];
+            $eventDescription = $eventrow["eventDescription"];
+        }
+    }
+
+    if (isset($_GET['updateEvent'])){
+        $eventid = $_GET['eventid'];
+        $updateEvent = $_GET['updateEvent'];
+        echo $eventid;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -104,30 +138,121 @@
 </style>
 <!--jumbotron hover is for pseudo-->
 <body onload="setFocus();">
+    <nav class="navbar navbar-expand-md bg-company-blue navbar-dark">
+        <a class="navbar-brand" href="#"><h3 class = "nav-logo-orange">UInvite</h3></a>
+        <!--hamburger-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Me</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="login_success.php">Profile</a>
+                    </div>
+             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Events</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Invitations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="logout.php">Logout</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <!--jumbo tron for the invite guest title-->
+    <div class="jumbotron">
+        <div class="form-group">
+            <input class="btn btn-primary align-left" type="button" value="Back" onclick="goBack()">
+            <h2 class = "center">Invite Guests</h2>
+        </div>
+    </div>
+
     <!--grid on the right to show the user the event they are looking at-->
     <section class="content-row row">
         <div class="grid">
+            <!--left of the event -->
+            <div class="column" style="background-color:#FF8425; position:fixed; text-align: left;">
+                <label>Event:</label>
+                <?php echo $eventName;?>
+                <br>
+                <label>Event Location: </label>
+                <?php echo $eventLocation;?>
+                <br>
+                <label>Event Date:</label>
+                <?php echo $eventDate;?>
+
+                <br>
+                <label>Event Time:</label>
+                <?php echo $eventTime;?>
+
+                <br>
+                <label>Event Description:</label>
+                <?php echo $eventDescription;?>
+                <form method = "GET" action="updateEvent.php">
+                        <input type="hidden" name="eventid" value="<?php echo $eventid;?>">
+                        <input type="hidden" name="update" value="True">
+                        <input class="btn btn-primary" type="submit" value="Update Event" id="updateEvent">
+                </form>
+            </div>
             <!--table of the people they would like to invite-->
             <div class="column-right" style="color: black; overflow-x: auto;">
                 <div class="form-group">
                     <label>Send Invitation To: </label>
-                    <input name="person" id="person">
-                    <input class="btn btn-primary" type="submit" value="Add" id="addperson" onClick="addPerson()">
-                    <br>
+                        <input name="person" id="person">
+                        <input class="btn btn-primary" type="submit" value="Add" id="addperson" name ="add" onClick="addPerson()">
+                        <br>
                     <span class="error" id="person-note"></span>
                     <span class="error" id="send-note"></span>
                 </div>
-                <hr>
-                <div id ="invite">
-                    <table id ="inviteTable" class = "table">
-                        <thead>
-                            <th>Invitee</th>
-                            <th>(Remove)</th>
-                        </thead>
-                    </table>
-                </div>
-                <hr>
-                <input class="btn btn-primary" type="submit" value="Send Invites" id="sendInvites" onClick="sendInvites()">
+                    <hr>
+                    <div id ="invite">
+                        <table id ="inviteTable" class = "table" name ="invite_table" style = "color:black;">
+                        <input type="hidden" name="eventid" value="<?php echo $eventid;?>">
+                            <thead>
+                                <th>Invitee</th>
+                                <th>(Remove)</th>
+                            </thead>
+                        </table>
+                    </div>
+                    <hr>
+                    <input class="btn btn-primary" type="submit" value="Send Invites" id="sendInvites" onClick="sendInvites()">
+                <?php
+                    function tdrows($elements)
+                    {
+                        $str = "";
+                        foreach ($elements as $element) {
+                            $str .= $element->nodeValue . ", ";
+                        }
+
+                        return $str;
+                    }
+
+                    /*function getdata()
+                    {
+                        $contents = "<table><tr><td>Row 1 Column 1</td><td>Row 1 Column 2</td></tr><tr><td>Row 2 Column 1</td><td>Row 2 Column 2</td></tr></table>";
+                        $DOM = new DOMDocument;
+                        $DOM->loadHTML($contents);
+
+                        $items = $DOM->getElementsByTagName('tr');
+
+                        foreach ($items as $node) {
+                            echo tdrows($node->childNodes) . "<br />";
+                        }
+                    }
+
+                    getdata();*/
+                ?>
             </div>
         </div>
     </section>
