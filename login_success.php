@@ -1,4 +1,5 @@
 <?php
+    //this will show when the login is successful and it will show the user profile
 	session_start();
 	readfile("logged_in.html");
 
@@ -8,7 +9,9 @@
 	}
 	include('conn.php');
 	$query=mysqli_query($conn,"select * from user where userid='".$_SESSION['id']."'");
-	$row=mysqli_fetch_assoc($query);
+    $row=mysqli_fetch_assoc($query);
+    $eventsforuser=mysqli_query($conn,"select * from `link` where userid='".$_SESSION['id']."'");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +42,23 @@
 		<div class="grid" style= "color: black; text-align: left;">
 			<h3>About me: </h3><br>
 				<?php echo $row['aboutme'];?>
-			<h3><?php echo $row['firstname'] . "'s Events"; ?></h3>
+            <h3><?php echo $row['firstname'] . "'s Events"; ?></h3>
+                <?php 
+                    if (mysqli_num_rows($eventsforuser) > 0) {
+                        // output data of each row
+                        while($row = mysqli_fetch_assoc($eventsforuser)) {
+                            $event = mysqli_query($conn, "select * from events where eventid='".$row["eventid"]."'");
+                            if (mysqli_num_rows($event)>0){
+                                while($eventrow = mysqli_fetch_assoc($event)){
+                                    echo "<a href=invite_guests.php?eventid=".$eventrow['eventid'].">".$eventrow['eventName']."</a></br>";
+                                    echo "  Location: ".$eventrow['eventLocation']."</br>";
+                                    echo "  Date    : ".$eventrow['eventDate']."</br>";
+                                    echo "  Time    : ".$eventrow['eventTime']."</br>";
+                                }
+                            }
+                        }
+                    }
+                ?>
         </div>
 	</section>
 	<footer class="primary-footer container">
