@@ -10,6 +10,21 @@ This site uses CSS and HTML for styling.
 It also uses javascript and php. 
 
 -----------------------------------------------------------
+Assignment 5: Angular
+[ ] Angular to perform one functionality of project: component decorator, view, and controller  
+[ ] use 2 of 3:  
+  [ ] ngIf  
+  [ ] ngFor  
+  [ ] ngSwitch  
+[ ] Use built-in attribute directive ngStyle or [style] to set at least one CSS property  
+[ ] Use built-in attribute directive ngClass or [class] to set at least one CSS class  
+[ ] two categories of data binding  
+  [ ] One-way binding from component to DOM -  for example, interpolation (display data on screen), attribute binding (set HTML attribute)  
+  [ ] One-way binding from DOM to component, "event binding" — when a specific DOM event happens, call the specified method in the component  
+  [ ] Two-way binding — data property in the component is used as the value for the DOM (input). If the DOM value is changed (by users, for example), the component property gets updated automatically to the new value  
+[ ] Your Angular program will serve as a front-end component that interacts with at least one server-side component (i.e., one of your PHPs). Hint: you need HttpClient and possibly modify your server-side component to response to the request.  
+
+-----------------------------------------------------------
 Assignment 4: PHP, database 
 Need 3 of the following:  
 [ ] arrays  
