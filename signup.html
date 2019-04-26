@@ -134,20 +134,15 @@
               </div>
               <!--user's gender is a required field-->
               <div class="form-group">
-                  <label class="col-sm-2"><b>Gender*</b></label>
-                  <div class="col-sm-5">
-                    <input [(ngModel)]="userModel.gender" type="radio" name="gender" value="Female">
-                    <label>Female</label>
-                  </div>
-                  <div class="col-sm-5">
-                    <input [(ngModel)]="userModel.gender" type="radio" name="gender" value="Male">
-                    <label>Male</label>
-                  </div>
-                  <div class="col-sm-5">
-                    <input [(ngModel)]="userModel.gender" type="radio" name="gender" value="Other">
-                    <label>Other</label>
-                  </div>
+                <label class="col-sm-2"><b>Gender*</b></label>
+                <div class="col-sm-5">
+                  <select [(ngModel)]="orderModel.gender" class="custom-select" name="gender">
+                    <option value="">What's your gender? </option>
+                    <option *ngFor="let gender of genderss">{{gender}} </option>
+                  </select>
+                </div>
               </div>
+
               <br>
               <div class="form-group">
                   <div class="col-sm-2">
