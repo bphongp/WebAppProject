@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="author" content="Annie Phongphouthai & Yueying Pan">
+    <meta name="description" content="This is the page for users to create an event.">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/nav_styles.css" />
+
+    <title>Sign Up</title>
+
+</head>
+<style>
+    .align-left{
+        float:left !important;
+    }
+    /*this will center the text on the jumbo tron*/
+    .center {
+        text-align: center;
+        margin-right:5%;
+    }
+    /*this is to make the text on the jumbotron align with the back button*/
+    h2{
+        display: inline-block;
+        margin:0;
+        vertical-align: middle;
+    }
+    /*grid is used to have the container after the jumbotron*/
+    .grid{
+        margin: 0 auto;
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align: center;
+    }
+    *{
+        box-sizing:border-box;
+    }
+    /*the entire page will be this color so the bottom footer looks full and
+    won't have white spaces on it when user scrolls*/
+    body {
+        background: #16529E;
+        color: white;
+        overflow-x:hidden;
+    }
+    /*this is to have the actual white container after the jumbotron*/
+    .container {
+        margin: 0 auto;
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    /*change the color of the jumbotron*/
+    .jumbotron{
+        background: black;
+        color:white;
+        text-align: center;
+    }
+    /*pseudo style when use hovers over the jumbotron*/
+    .jumbotron:hover {
+        background-color: #16529E;
+    }
+</style>
+<body>
+  <!--this is for the navbar at the top-->
+    <nav class="navbar navbar-expand-md bg-company-blue navbar-dark">
+        <a class="navbar-brand" href="#"><h3 class = "nav-logo-orange">UInvite</h3></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Me</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="login_success.php">Profile</a>
+                        </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Events</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Invitations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--this is for the Jumbotron-->
+    <div class="jumbotron">
+        <div class="form-group">
+            <input class="btn btn-primary align-left" type="button" value="Back">
+            <h2 class = "center">Sign Up</h2>
+        </div>
+    </div>
+
+    <form  #orderForm="ngForm">
+      <section class="content-row row">
+          <div class="grid" style= "color: black; text-align: left;">
+              <!--user's first name is a required field-->
+              <div class="form-group">
+                  <label class="col-sm-2"><b>First Name*</b></label>
+                  <div class="col-sm-5">
+                      <input required #name="ngModel"
+                             [class.is-invalid]="name.invalid"
+                             [(ngModel)]="userModel.first_name" type="text" name="first_name" class="form-control" required autofocus>
+                  </div>
+              </div>
+
+              <!--user's last name is a required field-->
+              <div class="form-group">
+                  <label class="col-sm-2"><b>Last Name*</b></label>
+                  <div class="col-sm-5">
+                      <input required #name="ngModel"
+                             [class.is-invalid]="name.invalid"
+                             [(ngModel)]="userModel.last_name" type="text" name="last_name" class="form-control" required autofocus>
+                  </div>
+              </div>
+
+            <!--user's username is a required field-->
+              <div class="form-group">
+                  <label class="col-sm-2"><b>User Name*</b></label>
+                  <div class="col-sm-5">
+                      <input [(ngModel)]="userModel.userName" type="text" name="userName" class="form-control" required>
+                  </div>
+              </div>
+              <!--user's email is a required field-->
+              <div class="form-group">
+                  <label class="col-sm-2"><b>Email*</b></label>
+                  <div class="col-sm-5">
+                      <input [(ngModel)]="userModel.userEmail" type="text" name="userEmail" class="form-control" required>
+                  </div>
+              </div>
+              <!--user's gender is a required field-->
+              <div class="form-group">
+                <label class="col-sm-2"><b>Gender*</b></label>
+                <div class="col-sm-5">
+                  <select [(ngModel)]="userModel.gender" class="custom-select" name="gender">
+                    <option value="">What's your gender? </option>
+                    <option *ngFor="let gender of genders">{{gender}} </option>
+                  </select>
+                </div>
+              </div>
+
+              <br>
+              <div class="form-group">
+                  <div class="col-sm-2">
+                      <input class="btn btn-primary" (click)="senddata(userForm.value)" type="submit" value="Sign Up" >
+                  </div>
+              </div>
+          </div>
+      </section>
+
+    </form>
+    <!--footer for the bottom of the screen-->
+    <footer class="primary-footer container">
+        <small class="copyright">&copy; Phongphouthai & Pan</small>
+        <nav class="nav-footer">
+            <ul>
+                <li><a href="index.html" title="may or may not need, depending on design">Me</a></li>
+                <li><a href="software.html" title="software or tool you have involved or created">Events</a></li>
+                <li><a href="research.html" title="research you have involved">Invitations</a></li>
+                <li><a href="contact.html" title="either email or form">Contact Us</a></li>
+            </ul>
+        </nav>
+      </footer>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</body>
+</html>
