@@ -1,4 +1,5 @@
 <?php
+//this is the database that is used
 $conn = mysqli_connect("localhost","root","","cookies");
  
 // Check connection

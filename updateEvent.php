@@ -1,3 +1,90 @@
+<?php
+/*CREATE TABLE `events` (
+  `eventid` INT(11) NOT NULL AUTO_INCREMENT,
+  `eventName` VARCHAR(30) NOT NULL,
+  `eventLocation` VARCHAR(30) NOT NULL,
+  `eventDate` VARCHAR(10) NOT NULL,
+  `eventTime` VARCHAR(10) NOT NULL,
+  `eventDescription` VARCHAR(200) NOT NULL,
+PRIMARY KEY (`eventid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `link` (
+  `linkid` INT(11) NOT NULL AUTO_INCREMENT,
+  `eventid` INT(11) NOT NULL,
+  `userid` INT(11) NOT NULL,
+PRIMARY KEY (`linkid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+*/
+	session_start();
+	ob_start();
+
+	include('conn.php');
+	//this will get the current user that is signed in.
+	$query=mysqli_query($conn,"select * from user where userid='".$_SESSION['id']."'");
+	if (mysqli_num_rows($query) > 0) {
+		// output data of each row
+		while($urow = mysqli_fetch_assoc($query)) {
+			$userid = $urow["userid"];
+		}
+	}
+	//will read the createanevent
+	//readfile("updateEvent.html");
+    $event_id = $_GET['eventid'];
+
+	//if there the get form has been entered it will follow these form
+	//where we will get the event information that has been entered
+	//and it will insert the event into the event table and link it to the current user
+	//this is so we can refer back to it later
+	if(isset($_POST['eventName'])) {
+		$eventName=$_POST['eventName'];
+		$eventLocation=$_POST['eventLocation'];
+		$eventDate = $_POST['eventDate'];
+		$eventTime = $_POST['eventTime'];
+        $eventDescription = $_POST['eventDescription'];
+        if ($eventName !=''){
+            $sql = "UPDATE events SET `eventName`='".$eventName."' WHERE eventid= $event_id;";
+            if (mysqli_query($conn, $sql)) {
+
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+        }
+        if ($eventLocation !=''){
+            $sql = "UPDATE events SET `eventLocation`='".$eventLocation."' WHERE eventid= $event_id;";
+            if (mysqli_query($conn, $sql)) {
+
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+        }
+        if ($eventDate !=''){
+            $sql = "UPDATE events SET `eventDate`='".$eventDate."' WHERE eventid= $event_id;";
+            if (mysqli_query($conn, $sql)) {
+
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+        }
+        if ($eventTime !=''){
+            $sql = "UPDATE events SET `eventTime`='".$eventTime."' WHERE eventid= $event_id;";
+            if (mysqli_query($conn, $sql)) {
+
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+        }
+        if ($eventDescription !=''){
+            $sql = "UPDATE events SET `eventDescription`='".$eventDescription."' WHERE eventid= $event_id;";
+            if (mysqli_query($conn, $sql)) {
+
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
+        }
+        header('location:invite_guests.php?eventid='.$event_id);
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +98,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/nav_styles.css" />
 
-    <title>Create an Event</title>
+    <title>UInvite</title>
 
     <!--This is an arrow function that checks the users' date input-->
     <script>
@@ -129,55 +216,55 @@
     <div class="jumbotron">
         <div class="form-group">
             <input class="btn btn-primary align-left" type="button" value="Back">
-            <h2 class = "center">Create An Event</h2>
+            <h2 class = "center">Update Event</h2>
         </div>
     </div>
     <!--this is the container for the form that users enter-->
-    <form method="POST" action="createAnEvent.php">
+    <form method="POST" action="">
         <section class="content-row row">
             <div class="grid" style= "color: black; text-align: left;">
                 <!--name of the event is a required field-->
                 <div class="form-group">
-                    <label class="col-sm-2"><b>Name of Event*</b></label>
+                    <label class="col-sm-2"><b>Name of Event</b></label>
                     <div class="col-sm-5">
-                        <input type="text" name="eventName" class="form-control" required autofocus>
+                        <input type="text" name="eventName" class="form-control" autofocus>
                     </div>
                 </div>
               <!--location of the event is a required field-->
                 <div class="form-group">
-                    <label class="col-sm-2"><b>Location*</b></label>
+                    <label class="col-sm-2"><b>Location</b></label>
                     <div class="col-sm-5">
-                        <input type="text" name="eventLocation" class="form-control" required>
+                        <input type="text" name="eventLocation" class="form-control">
                     </div>
                 </div>
                 <!--date of the event and will check it is in the correct format for date-->
                 <!--gives an error message if it is not in the correct format-->
                 <div class="form-group">
-                    <label class="col-sm-2"><b>Date*</b></label>
+                    <label class="col-sm-2"><b>Date</b></label>
                     <div class="col-sm-5">
-                        <input type="text" name="eventDate" class="form-control" placeholder="MM/DD/YYYY" id="date" required>
+                        <input type="text" name="eventDate" class="form-control" placeholder="MM/DD/YYYY" id="date" >
                         <p id="errorMessage1" style="color:red"></p>
                     </div>
                 </div>
                 <!--this will check the time and make sure it is in the correct format, if not it will give an error message-->
                 <div class="form-group">
-                    <label class="col-sm-2"><b>Time*</b></label>
+                    <label class="col-sm-2"><b>Time</b></label>
                     <div class="col-sm-5">
-                        <input type="text" name="eventTime" min="00:00" max="24:00" class="form-control" placeholder="HH:MM" id="time" required>
+                        <input type="text" name="eventTime" min="00:00" max="24:00" class="form-control" placeholder="HH:MM" id="time" >
                         <p id="errorMessage2" style="color:red"></p>
                     </div>
                 </div>
                 <!--descriptions are required for the form.-->
                 <div class="form-group">
-                    <label class="col-sm-2"><b>Description*</b></label>
+                    <label class="col-sm-2"><b>Description</b></label>
                     <div class="col-sm-5">
-                        <textarea class="form-control" rows="5" name="eventDescription" required></textarea>
+                        <textarea class="form-control" rows="5" name="eventDescription" ></textarea>
                     </div>
                 </div>
                 <br>
                 <div class="form-group">
                     <div class="col-sm-2">
-                        <input class="btn btn-primary" type="submit" value="Create Event" onclick="dateFormat();timeFormat();">
+                        <input class="btn btn-primary" type="submit" value="Update Event" onclick="dateFormat();timeFormat();">
                     </div>
                 </div>
             </div>

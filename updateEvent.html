@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/nav_styles.css" />
 
-    <title>Create an Event</title>
+    <title>UInvite</title>
 
     <!--This is an arrow function that checks the users' date input-->
     <script>
@@ -129,55 +129,55 @@
     <div class="jumbotron">
         <div class="form-group">
             <input class="btn btn-primary align-left" type="button" value="Back">
-            <h2 class = "center">Create An Event</h2>
+            <h2 class = "center">Update Event</h2>
         </div>
     </div>
     <!--this is the container for the form that users enter-->
-    <form method="POST" action="createAnEvent.php">
+    <form method="POST" action="updateEvent.php">
         <section class="content-row row">
             <div class="grid" style= "color: black; text-align: left;">
                 <!--name of the event is a required field-->
                 <div class="form-group">
-                    <label class="col-sm-2"><b>Name of Event*</b></label>
+                    <label class="col-sm-2"><b>Name of Event</b></label>
                     <div class="col-sm-5">
-                        <input type="text" name="eventName" class="form-control" required autofocus>
+                        <input type="text" name="eventName" class="form-control" autofocus>
                     </div>
                 </div>
               <!--location of the event is a required field-->
                 <div class="form-group">
-                    <label class="col-sm-2"><b>Location*</b></label>
+                    <label class="col-sm-2"><b>Location</b></label>
                     <div class="col-sm-5">
-                        <input type="text" name="eventLocation" class="form-control" required>
+                        <input type="text" name="eventLocation" class="form-control">
                     </div>
                 </div>
                 <!--date of the event and will check it is in the correct format for date-->
                 <!--gives an error message if it is not in the correct format-->
                 <div class="form-group">
-                    <label class="col-sm-2"><b>Date*</b></label>
+                    <label class="col-sm-2"><b>Date</b></label>
                     <div class="col-sm-5">
-                        <input type="text" name="eventDate" class="form-control" placeholder="MM/DD/YYYY" id="date" required>
+                        <input type="text" name="eventDate" class="form-control" placeholder="MM/DD/YYYY" id="date" >
                         <p id="errorMessage1" style="color:red"></p>
                     </div>
                 </div>
                 <!--this will check the time and make sure it is in the correct format, if not it will give an error message-->
                 <div class="form-group">
-                    <label class="col-sm-2"><b>Time*</b></label>
+                    <label class="col-sm-2"><b>Time</b></label>
                     <div class="col-sm-5">
-                        <input type="text" name="eventTime" min="00:00" max="24:00" class="form-control" placeholder="HH:MM" id="time" required>
+                        <input type="text" name="eventTime" min="00:00" max="24:00" class="form-control" placeholder="HH:MM" id="time" >
                         <p id="errorMessage2" style="color:red"></p>
                     </div>
                 </div>
                 <!--descriptions are required for the form.-->
                 <div class="form-group">
-                    <label class="col-sm-2"><b>Description*</b></label>
+                    <label class="col-sm-2"><b>Description</b></label>
                     <div class="col-sm-5">
-                        <textarea class="form-control" rows="5" name="eventDescription" required></textarea>
+                        <textarea class="form-control" rows="5" name="eventDescription" ></textarea>
                     </div>
                 </div>
                 <br>
                 <div class="form-group">
                     <div class="col-sm-2">
-                        <input class="btn btn-primary" type="submit" value="Create Event" onclick="dateFormat();timeFormat();">
+                        <input class="btn btn-primary" type="submit" value="Update Event" onclick="dateFormat();timeFormat();">
                     </div>
                 </div>
             </div>
