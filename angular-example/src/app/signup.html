@@ -9,7 +9,7 @@
     <meta name="author" content="Annie Phongphouthai & Yueying Pan">
     <meta name="description" content="This is the page for users to create an event.">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/nav_styles.css" />
+    <link rel="stylesheet" href="../../../styles/nav_styles.css" />
 
     <title>Sign Up</title>
 
@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    <form  #orderForm="ngForm">
+    <form  #userForm="ngForm">
       <section class="content-row row">
           <div class="grid" style= "color: black; text-align: left;">
               <!--user's first name is a required field-->
@@ -152,6 +152,15 @@
                     <option *ngFor="let gender of genders">{{gender}} </option>
                   </select>
                 </div>
+              </div>
+
+              <!--If check the box, a message will be displayed on the screen-->
+              <div class="form-group">
+                  <div class="col-sm-5">
+                    <input [(ngModel)]="userModel.sendEmail" type="checkbox" name="sendemail">
+                    <label class="form-check-label">Send me an email when I've signed up </label>
+                    <!--<div *ngIf="document.getElementByName("sendemail").checked==true"> You will receive an email when you've signed up. </div>-->
+                  </div>
               </div>
 
               <br>
