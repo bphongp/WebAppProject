@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Order } from './order';
+import { User } from './user';
 
-import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -9,19 +9,26 @@ import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'CS4640 - inclass12';
-  drinks = ['Coffee', 'Tea', 'Milk'];
-  responsedata = new Order('', '',0 ,'','',true)
-  orderModel = new Order('', 'duh@uva.edu', 9991234567, '', '', true);
-  constructor(private http: HttpClient){}
+  title = 'Sign up';
 
+
+  // let's create a property to store a response from the back end
+  // and try binding it back to the view
+  responsedata = new User('','', '', '', '');
+
+  genders = ['Male', 'Female', 'Prefer Not to identify'];
+  userModel = new User('hi', 'hi','hihi', 'hihi', 'Male');
+  
+  
+
+  constructor(private http: HttpClient) { }
 
   senddata(data){
     console.log(data);
     let params=JSON.stringify(data)
          //this.http.get('http://localhost/cs4640s19/ngphp-get.php?str='+encodeURIComponent(params))
          //this.http.post('http://localhost/cs4640s19/ngphp-post.php', data)
-    this.http.get<Order>('http://localhost/PL/WebAppProject/ngphp-template.php?str='+params)
+    this.http.get<User>('http://localhost/PL/WebAppProject/ngphp-template.php?str='+params)
     .subscribe((data)=>{
       console.log('Got data from backend', data);
       this.responsedata = data;
