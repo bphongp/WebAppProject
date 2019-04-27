@@ -160,7 +160,7 @@
               </div>
 
               <!--confirm email-->
-              <div class="col-sm-5">
+              <div class="col-sm-5" [ngClass]="{center: false}">
                 <div *ngIf="userModel.userEmail!=''" [style.color]="'red'"><br/>
                   You entered the email address: {{ userModel.userEmail }}. An email will be sent to this email address to confirm that you've signed up.
                 </div> <br/>
@@ -174,7 +174,9 @@
               </div>
           </div>
       </section>
-
+      Display data received from the back end <br/>
+      response data = {{ responsedata | json}}
+      <br/>
     </form>
     <!--footer for the bottom of the screen-->
     <footer class="primary-footer container">

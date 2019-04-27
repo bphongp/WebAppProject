@@ -15,7 +15,6 @@ export class AppComponent {
   // let's create a property to store a response from the back end
   // and try binding it back to the view
   responsedata = new User('','', '', '', '', '');
-
   genders = ['Male', 'Female', 'Prefer Not to Identify'];
   userModel = new User('', '','', '', '', '');
   
