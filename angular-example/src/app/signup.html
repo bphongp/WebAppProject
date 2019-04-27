@@ -140,7 +140,7 @@
                     <label class ="col-sm-2"><b>Password</b></label>
                     <div class="col-sm-5">
                         <input [(ngModel)]="userModel.password" type="password" name ="password" id ="password" class = "form-control" required>
-                    </div>              
+                    </div>
               </div>
               <!--user's email is a required field-->
               <div class="form-group">
@@ -160,13 +160,11 @@
                 </div>
               </div>
 
-              <!--If check the box, a message will be displayed on the screen-->
-              <div class="form-group">
-                  <div class="col-sm-5">
-                    <input [(ngModel)]="userModel.sendEmail" type="checkbox" name="sendemail">
-                    <label class="form-check-label">Send me an email when I've signed up </label>
-                    <!--<div *ngIf="document.getElementByName("sendemail").checked==true"> You will receive an email when you've signed up. </div>-->
-                  </div>
+              <!--confirm email-->
+              <div class="col-sm-5" [ngClass]="{center: false}">
+                <div *ngIf="userModel.userEmail!=''" [style.color]="'red'"><br/>
+                  You entered the email address: {{ userModel.userEmail }}. An email will be sent to this email address to confirm that you've signed up.
+                </div> <br/>
               </div>
 
               <br>
