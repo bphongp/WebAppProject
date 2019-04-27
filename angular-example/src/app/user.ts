@@ -5,5 +5,6 @@ export class User {
       public userName: string,
       public userEmail: string,
       public gender: string,
+      public password:string,
    ){}
 }
