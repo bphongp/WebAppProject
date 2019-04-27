@@ -14,6 +14,26 @@ CREATE TABLE `link` (
   `userid` INT(11) NOT NULL,
 PRIMARY KEY (`linkid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user` (
+  `userid` INT(11) NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(30) NOT NULL,
+  `firstname` VARCHAR(30) NOT NULL,
+  `lastname` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `aboutme` VARCHAR(200) NOT NULL,
+  `gender` VARCHAR(10) NOT NULL,
+  `notification` BOOLEAN NOT NULL,
+
+PRIMARY KEY (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `user` (`username`, `password`, `firstname`, `lastname`, `email`,`aboutme`, `gender`, `notification`) VALUES
+('bp8qg', 'password', 'Annie', 'Phongphouthai', 'bp8qg@virginia.edu', 'I like turtles', 'Female', FALSE),
+('yp2mj', 'password', 'Scarlett','Pan', 'yp2mj@virginia.edu', 'Turtles are cool', 'Female', FALSE);
+
+userid, username, password, firstname, lastname, aboutme,email, aboutme, gender, notifications
 */
 	session_start();
 	ob_start();
