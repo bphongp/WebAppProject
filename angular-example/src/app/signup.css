@@ -2,3 +2,78 @@
     text-align: center;
     margin-right:5%;
 }
+/*this is to have a navbar at the top with the blue background*/
+.bg-company-blue {
+    background-color:#16529E;
+}
+/*this is the logo on the top navbar*/
+.nav-logo-orange{
+    color: #FF8425; 
+}
+/*this is used for any error*/
+.error {
+    color: red;
+    font-style: italic;
+ }
+ /*this is the footer so that it can be the same color as the navbar at the top*/
+.primary-footer {
+    color: #16529E;
+    font-size: 14px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+} 
+/*footer menu, the color will be white*/
+.primary-footer a {
+    text-align:right;
+    color: #ffffff;
+}
+/*footer menu text will be orange if it is hovered over*/
+.primary-footer a:hover {
+    color: rgb(199, 103, 30);
+}
+/*nav footer will align the text to the right*/
+.nav-footer {
+    text-align: right;
+    width: 100%;
+}
+/*nav footer will allow the menu items and copy right to be on the same block line*/
+.nav-footer li {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: top;
+}
+/*copy right symbol*/
+.copyright {
+    float: left;
+    color: #FF8425;
+}
+/*container to create the white portion */
+.container {
+    margin: 0 auto;
+    width: 100%;                
+    padding-left: 30px;
+    padding-right: 30px;
+}
+/*allow the body to be positiioned this way to make things look nice*/
+html, body{
+    margin: 0;
+    padding:0;
+    height:100%;
+}
+/*used for the event container*/
+.content-row {
+    background: white;
+    padding: 20px 20px 20px 20px;
+}
+/*used to make it easier to split the screen*/
+.grid {
+    margin: 0 auto;
+    width: 100%;                	
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+}
+/* want everything to be inline for the columns content*/
+.content-col {
+    display: inline-block;	  
+} 
